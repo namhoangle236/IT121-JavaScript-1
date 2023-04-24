@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-121 Week 2 Assignment</title>
+</head>
+<body>
+    <h1>Celcius to Fahrenheit Converter</h1>
+    <p>Enter a temperature in degrees Celsius:</p>
+	<input type="number" id="celsiusInput">
+	<button onclick="convert()">Convert</button>        <!-- Remember to refer to the function name -->
+	<p id="result"></p>                                 <!-- empty p with id to display result later -->
+	
+	<script>
+		function convert() {
+			// get the input value
+			let celsius = document.getElementById("celsiusInput").value;
+			
+			// convert to F equation
+			let fahrenheit = (9 / 5) * celsius + 32;
+			
+			// display result
+			let resultText = celsius + " degrees Celsius is equal to " + fahrenheit + " degrees Fahrenheit.";
+			document.getElementById("result").textContent = resultText;
+		}
+	</script>
+</body>
+</html>
