@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 Assignment</title>
+    <style>
+        #yellow {
+            background: yellow;
+            width: 400px;
+            height: 400px;
+            position: relative;     /* relative position so that red square can be absolutee relatively to yellow */
+        }
+        #red {
+            background: red;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Create a button that map to move() function -->
+    <button onclick="move()"> CLick to move red square diagonally!</button>
+    <!-- create a square inside a container using div -->
+    <div id="yellow">
+        <div id="red"></div>
+    </div>
+</body>
+<script>
+    function move() {   // make a function to move red square and store some variables needed to do so
+        let redElem = document.getElementById('red');   // fetch red square element, assign it to redElem
+        let pos = 0;    // initial position of both from top and from left side of screen is 0, but this is also 0 so that we can slowly increse it 
+        let anim = setInterval(animate,5)   // set interval of 5 mili-seconds, meaning the red square will move from top and from left by 'x' pixels every 5 mili-seconds using 'animate' function
+
+        function animate(){     // make a funtion inside move() that move red square, using the above variables
+            if (pos == 350){    // 400px of yellow - 50px of red = 350, lining the bottom and right side inside the yellow once it stop moving
+                clearInterval(anim);    // if red is outside yellow, stop anim
+            }else{
+                pos++;      // increase position by 1
+            redElem.style.top = pos+"px";   // increase position by 1 from top, concat 'px' to make it a pixel, then change the style
+            redElem.style.left = pos+"px";  // increase position by 1 from left, concat 'px' to make it a pixel, then change the style
+            }
+        }
+    }
+
+    // Extremely useful video for this "https://www.youtube.com/watch?v=4C7bdrb9YAY&list=PLA5mOwB4xQtSJYCo-amxp5r4IIBSRxwId&index=10"
+</script>
+</html>
