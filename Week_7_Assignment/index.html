@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7 Assignment</title>
+</head>
+<body>
+    <img id="image1" src="images/usa.png" onclick="changeImg('image1')">    <!-- Have the image 'id' as the parameter --> 
+    <img id="image2" src="images/canada.png" onclick="changeImg('image2')">
+</body>
+<script>
+    const myImages = ["images/usa.png", "images/canada.png", "images/jamaica.gif", "images/mexico.png"];    // Create list of images
+
+    function changeImg(imageId) {
+        const imgElement = document.getElementById(imageId);    // Fetch the 'id', assign  it to imgElement
+        const randomIndex = Math.floor(Math.random() * myImages.length);    // or just 4 in this case, random between 4 results, give 0 to 3 indexes
+        const newImage = myImages[randomIndex];     // Assign new random image to newImage
+        imgElement.src = newImage;      // Replace scr with new image
+    }
+
+</script>
+</html>
