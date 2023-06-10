@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email extractor</title>
+</head>
+<body>
+    <textarea id="textarea1"></textarea>
+    <button onclick="extractEmails()">Extract Emails</button>
+    <textarea id="textarea2" readonly></textarea>
+</body>
+<script>
+    function extractEmails() {
+        const textarea1 = document.getElementById('textarea1');     // assign textarea1 in html to 'textarea1'
+        const textarea2 = document.getElementById('textarea2');     // ^
+  
+        // Extract emails using regular expression (a whole 'nother programing language, regex, for now just look for email extractor algorithm')
+        const content = textarea1.value;                                        // Fetch content in textarea1, assign it to 'content' variable
+        const emails = content.match(/\b[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}\b/g);   // .match method to find email via regex (/g means global, so it won't limit to lookup in just the function)
+  
+        // Convert emails to unique array
+        const uniqueEmails = Array.from(new Set(emails));            // Set create a collection of unique value, eliminating duplicates. 'new' is to create a new instance of the Set object
+                                                                     // Array.form is to convert the set into an array
+        // Update textarea2 with extracted emails
+        if (uniqueEmails.length > 0) {
+            textarea2.value = uniqueEmails.join('\n');
+        } else {
+            textarea2.value = 'No unique email addresses found.';
+        }
+    }
+
+    /* Note: Can also use spread operator "...", to convert new set into array, but a bit different, since 
+    "..." syntax allows an iterable, such as an array or string, to be expanded in places where zero or more 
+    arguments (for function calls) or elements (for array literals) are expected. */
+
+    // >>>>>>>>>    const uniqueEmails = [...new Set(emails)];     <<<<<<<<
+
+    // without the [], this would not work, since there is no indexes to be filled in
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+</script>
+</html>
