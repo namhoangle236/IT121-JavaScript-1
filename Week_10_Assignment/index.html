@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Fetch Assignment</title>
+</head>
+<body>
+    <button onclick="showCatFact()">Get a Cat fact</button>
+    <p id="catfact"></p>
+</body>
+<script>
+    async function getCatFact() {
+
+        const api_endpoint = "https://cat-fact.herokuapp.com/facts/random?amount=1"     // Create variable to store API path
+        const response = await fetch(api_endpoint);                                     // async await to pause the execution of the function until a promise is resolved, 'fetch' to fetch data 
+        const json_response = await response.json();                                    // Convert the 'response' data to json
+        
+        console.log(json_response);                                                     // Log out to console
+        return json_response;                                                           // Return value of data as json to be used to display in html
+       }
+
+    async function showCatFact() {                                                      // Also async func here to wait for getCatFact to complete
+
+        const catFactResponse = await getCatFact();
+        const paragraphTag = document.getElementById("catfact");                        // Assign 'catfact' element to 'paragraphTag'
+        paragraphTag.innerText = catFactResponse.text;
+    }
+
+    // Note: can combine 2 functions, but separate into a 'get' and 'show' for clear visualization
+</script>
+</html>
